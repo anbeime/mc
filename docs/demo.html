@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>麦麦省钱雷达 · 省钱报告</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#FBF8F3; color:#1F2328;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    line-height:1.6; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { background: linear-gradient(135deg, #DA291C, #A81E14); color:#fff;
+    border-radius: 18px; padding: 26px 28px; position: relative; overflow:hidden; }
+  header .glow { position:absolute; right:-40px; top:-40px; width:180px; height:180px;
+    background:#FFC72C; opacity:.22; border-radius:50%; }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:.5px; }
+  header .sub { opacity:.92; font-size:13px; }
+  .store { margin-top:10px; font-size:13px; background:rgba(255,255,255,.16);
+    display:inline-block; padding:4px 10px; border-radius:999px; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin:18px 0 22px; }
+  .kpi { background:#fff; border:1px solid #E8E3DA; border-radius:14px; padding:14px 16px; }
+  .kpi-label { font-size:12px; color:#6B7280; }
+  .kpi-value { font-size:26px; font-weight:700; margin:2px 0 2px; color:#DA291C; }
+  .kpi-sub { font-size:12px; color:#6B7280; }
+  section { background:#fff; border:1px solid #E8E3DA; border-radius:16px; padding:18px 20px; margin-bottom:16px; }
+  section h2 { font-size:16px; margin:0 0 12px; display:flex; align-items:center; gap:8px; }
+  section h2::before { content:""; width:4px; height:16px; background:#FFC72C; border-radius:2px; }
+  .coupon { display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:10px 12px; border-radius:10px; border:1px dashed #E8E3DA; margin-bottom:8px; }
+  .coupon.danger { border-color:#F2B8B5; background:#FFF6F5; }
+  .coupon.ok { background:#FCFBF9; }
+  .c-name { font-weight:600; font-size:14px; }
+  .c-meta { font-size:12px; color:#6B7280; }
+  .c-right { text-align:right; white-space:nowrap; }
+  .c-value { font-weight:700; color:#DA291C; font-size:14px; }
+  .c-expire { font-size:12px; color:#6B7280; }
+  .coupon.danger .c-expire { color:#DA291C; font-weight:600; }
+  .deal { border:1px solid #E8E3DA; border-radius:12px; padding:12px 14px; margin-bottom:10px; background:#FCFBF9; }
+  .deal-head { display:flex; align-items:center; gap:8px; }
+  .badge { background:#FFC72C; color:#3B2A00; font-size:11px; font-weight:700;
+    padding:2px 8px; border-radius:999px; }
+  .deal-title { font-weight:600; }
+  .deal-price { margin:6px 0 2px; display:flex; align-items:baseline; gap:10px; }
+  .pay { font-size:22px; font-weight:800; color:#DA291C; }
+  .was { color:#6B7280; text-decoration:line-through; font-size:13px; }
+  .save { background:#E9F7EC; color:#186A3B; font-size:12px; padding:2px 8px; border-radius:999px; font-weight:600; }
+  .deal-meta { font-size:12px; color:#6B7280; }
+  .timeline { list-style:none; margin:0; padding:0 0 0 6px; }
+  .timeline li { display:flex; gap:10px; padding:6px 0; }
+  .tl-dot { width:8px; height:8px; background:#DA291C; border-radius:50%; margin-top:8px; flex:0 0 auto; }
+  .tl-title { font-size:14px; font-weight:600; }
+  .tl-meta { font-size:12px; color:#6B7280; }
+  .pill { font-size:11px; padding:1px 8px; border-radius:999px; background:#EEE9E1; color:#6B7280; margin-left:6px; }
+  .pill.on { background:#E9F7EC; color:#186A3B; }
+  .warn { background:#FFF6F5; border:1px solid #F2B8B5; color:#8C1D18;
+    border-radius:12px; padding:12px 14px; font-size:13px; margin-bottom:16px; }
+  .ok-bar { background:#F0F8F3; border:1px solid #BFE3CB; color:#186A3B;
+    border-radius:12px; padding:10px 14px; font-size:13px; margin-bottom:16px; }
+  .empty { color:#6B7280; font-size:13px; padding:8px 0; }
+  footer { font-size:12px; color:#6B7280; text-align:center; margin-top:20px; }
+  footer code { background:#F1EDE6; padding:1px 5px; border-radius:4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="glow"></div>
+    <h1>🍟 麦麦省钱雷达</h1>
+    <div class="sub">扫描时间 2026-10-09 21:04（北京时间） · 数据来自麦当劳 MCP 实时接口</div>
+    <div class='store'>📍 麦当劳·科技园店 · 深圳市南山区科技园南区 1 号</div>
+  </header>
+
+  <div class="kpis"><div class="kpi">
+  <div class="kpi-label">可用券</div>
+  <div class="kpi-value">7</div>
+  <div class="kpi-sub">张</div>
+</div><div class="kpi">
+  <div class="kpi-label">快过期</div>
+  <div class="kpi-value">3</div>
+  <div class="kpi-sub">张 · 面额 ¥17.5</div>
+</div><div class="kpi">
+  <div class="kpi-label">单笔最高省</div>
+  <div class="kpi-value">¥12</div>
+  <div class="kpi-sub">试算 3 个组合</div>
+</div><div class="kpi">
+  <div class="kpi-label">我的积分</div>
+  <div class="kpi-value">1,860</div>
+  <div class="kpi-sub">即将过期 320</div>
+</div></div>
+  <div class="ok-bar">✅ 本次新领到 2 张券：新客首单减 10 元、麦麦省专享 6 元券</div>
+  <div class="warn"><div>⚠️ 有 320 积分即将过期，别让它白白蒸发。</div></div>
+
+  <section>
+    <h2>⏰ 券到期预警</h2>
+    <div class="coupon danger">
+  <div class="c-main">
+    <div class="c-name">巨无霸立减 8 元券</div>
+    <div class="c-meta">指定汉堡 · 满 20 元可用</div>
+  </div>
+  <div class="c-right">
+    <div class="c-value">满20减8</div>
+    <div class="c-expire">今天到期</div>
+  </div>
+</div><div class="coupon danger">
+  <div class="c-main">
+    <div class="c-name">薯条买一送一</div>
+    <div class="c-meta">小食</div>
+  </div>
+  <div class="c-right">
+    <div class="c-value">买赠</div>
+    <div class="c-expire">1 天后到期</div>
+  </div>
+</div><div class="coupon danger">
+  <div class="c-main">
+    <div class="c-name">鸡块 5 块装 1 元换购</div>
+    <div class="c-meta">小食 · 满 25 元可用</div>
+  </div>
+  <div class="c-right">
+    <div class="c-value">满25减9.5</div>
+    <div class="c-expire">2 天后到期</div>
+  </div>
+</div>
+  </section>
+
+  <section>
+    <h2>🎯 今日最省组合</h2>
+    <div class="deal">
+  <div class="deal-head"><span class="badge">最省</span><span class="deal-title">巨无霸套餐（中薯+中可）</span></div>
+  <div class="deal-price">
+    <span class="pay">¥27</span>
+    <span class="was">¥39</span>
+    <span class="save">省 ¥12</span>
+  </div>
+  <div class="deal-meta">用券：麦乐送满 30 减 12（限 外送订单） · 折扣 31% · 数据口径：官方试算</div>
+</div><div class="deal">
+  <div class="deal-head"><span class="badge">次优</span><span class="deal-title">双层吉士汉堡</span></div>
+  <div class="deal-price">
+    <span class="pay">¥12</span>
+    <span class="was">¥21.5</span>
+    <span class="save">省 ¥9.5</span>
+  </div>
+  <div class="deal-meta">用券：鸡块 5 块装 1 元换购（限 小食） · 折扣 44% · 数据口径：官方试算</div>
+</div><div class="deal">
+  <div class="deal-head"><span class="badge">备选</span><span class="deal-title">麦辣鸡腿堡套餐</span></div>
+  <div class="deal-price">
+    <span class="pay">¥30.5</span>
+    <span class="was">¥36</span>
+    <span class="save">省 ¥5.5</span>
+  </div>
+  <div class="deal-meta">用券：麦咖啡第二杯半价（限 饮品） · 折扣 15% · 数据口径：官方试算</div>
+</div>
+  </section>
+
+  <section>
+    <h2>🗓️ 活动雷达</h2>
+    <ul class="timeline"><li>
+  <div class="tl-dot"></div>
+  <div class="tl-body">
+    <div class="tl-title">1024 程序员节 · 麦麦代码日 <span class="pill on">进行中</span></div>
+    <div class="tl-meta">2026-10-08 → 2026-10-25 · 出示代码截图可领小食券</div>
+  </div>
+</li><li>
+  <div class="tl-dot"></div>
+  <div class="tl-body">
+    <div class="tl-title">会员日 · 每周三积分翻倍 <span class="pill on">进行中</span></div>
+    <div class="tl-meta">2026-09-09 → 2026-12-08 · 星期三下单，积分双倍累计</div>
+  </div>
+</li><li>
+  <div class="tl-dot"></div>
+  <div class="tl-body">
+    <div class="tl-title">巨无霸 55 周年庆 <span class="pill">待开始/已结束</span></div>
+    <div class="tl-meta">2026-10-29 → 2026-11-18 · 经典回归，限量复古包装</div>
+  </div>
+</li><li>
+  <div class="tl-dot"></div>
+  <div class="tl-body">
+    <div class="tl-title">早餐新品尝鲜周 <span class="pill">待开始/已结束</span></div>
+    <div class="tl-meta">2026-10-14 → 2026-10-21 · 新早餐组合 9.9 元起</div>
+  </div>
+</li></ul>
+  </section>
+
+  <section>
+    <h2>🎟️ 我的券包（7 张在效）</h2>
+    <div class="coupon ok">
+  <div class="c-main">
+    <div class="c-name">麦乐送满 30 减 12</div>
+    <div class="c-meta">外送订单 · 满 30 元可用</div>
+  </div>
+  <div class="c-right">
+    <div class="c-value">满30减12</div>
+    <div class="c-expire">11 天后到期</div>
+  </div>
+</div><div class="coupon ok">
+  <div class="c-main">
+    <div class="c-name">麦咖啡第二杯半价</div>
+    <div class="c-meta">饮品 · 满 20 元可用</div>
+  </div>
+  <div class="c-right">
+    <div class="c-value">满20减5.5</div>
+    <div class="c-expire">25 天后到期</div>
+  </div>
+</div><div class="coupon ok">
+  <div class="c-main">
+    <div class="c-name">早餐满 15 减 6</div>
+    <div class="c-meta">早餐时段 · 满 15 元可用</div>
+  </div>
+  <div class="c-right">
+    <div class="c-value">满15减6</div>
+    <div class="c-expire">38 天后到期</div>
+  </div>
+</div><div class="coupon ok">
+  <div class="c-main">
+    <div class="c-name">任意消费减 4 元</div>
+    <div class="c-meta">全场通用</div>
+  </div>
+  <div class="c-right">
+    <div class="c-value">立减4元</div>
+    <div class="c-expire">60 天后到期</div>
+  </div>
+</div>
+  </section>
+
+  <footer>
+    数据来源 Tool：`query-my-coupons` · `query-nearby-stores` · `query-meals` · `query-store-coupons` · `calculate-price` · `campaign-calendar` · `query-my-account`<br>
+    本报告由「麦麦省钱雷达」本地生成 · 仅供参考，实际价格与券规则以麦当劳官方为准
+  </footer>
+</div>
+</body>
+</html>

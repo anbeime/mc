@@ -1,0 +1,26 @@
+# 构建产物
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# 本地报告与截图产物
+report.html
+report-*.html
+*.local.html
+
+# 凭据 —— 绝不入库
+.env
+.env.*
+!.env.example
+*.token
+token.txt
+
+# 系统 / 编辑器
+.DS_Store
+.idea/
+.vscode/
+*.swp

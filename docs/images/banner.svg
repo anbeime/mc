@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" width="1000" height="300" role="img" aria-label="麦麦省钱雷达 MCD Savings Radar">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E1362A"/>
+      <stop offset="55%" stop-color="#C0201A"/>
+      <stop offset="100%" stop-color="#7E140F"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFC72C" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FFC72C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFC72C" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#FFC72C" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFE08A"/>
+      <stop offset="100%" stop-color="#FFC72C"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="300" rx="20" fill="url(#bg)"/>
+
+  <!-- 右侧雷达 -->
+  <g transform="translate(820,150)">
+    <circle r="130" fill="url(#glow)"/>
+    <circle r="118" fill="none" stroke="#FFC72C" stroke-opacity="0.28" stroke-width="1.4"/>
+    <circle r="88"  fill="none" stroke="#FFC72C" stroke-opacity="0.34" stroke-width="1.4"/>
+    <circle r="58"  fill="none" stroke="#FFC72C" stroke-opacity="0.42" stroke-width="1.4"/>
+    <circle r="28"  fill="none" stroke="#FFC72C" stroke-opacity="0.55" stroke-width="1.6"/>
+    <path d="M0,0 L-102,-60 A118,118 0 0,1 -14,-117 Z" fill="url(#sweep)"/>
+    <line x1="0" y1="0" x2="0" y2="-118" stroke="#FFC72C" stroke-opacity="0.7" stroke-width="1.6"/>
+    <line x1="0" y1="-118" x2="0" y2="118" stroke="#FFC72C" stroke-opacity="0.16" stroke-width="1"/>
+    <line x1="-118" y1="0" x2="118" y2="0" stroke="#FFC72C" stroke-opacity="0.16" stroke-width="1"/>
+    <circle cx="-52" cy="-46" r="5.5" fill="#FFC72C"/>
+    <circle cx="34" cy="66" r="4.5" fill="#FFE08A"/>
+    <circle cx="72" cy="-30" r="4" fill="#FFE08A"/>
+    <circle cx="0" cy="0" r="5" fill="#fff"/>
+  </g>
+
+  <!-- 左侧文字 -->
+  <g transform="translate(64,96)">
+    <rect x="0" y="-30" width="112" height="26" rx="13" fill="#FFC72C" opacity="0.95"/>
+    <text x="56" y="-11" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700"
+          fill="#7E140F" text-anchor="middle">MCP Skill</text>
+
+    <text x="0" y="40" font-family="PingFang SC,Microsoft YaHei,Helvetica,Arial,sans-serif"
+          font-size="56" font-weight="800" fill="#ffffff" letter-spacing="2">麦麦省钱雷达</text>
+    <text x="2" y="76" font-family="Helvetica,Arial,sans-serif" font-size="19" font-weight="600"
+          fill="#FFD98A" letter-spacing="3">MCD SAVINGS RADAR</text>
+
+    <text x="0" y="116" font-family="PingFang SC,Microsoft YaHei,Helvetica,Arial,sans-serif"
+          font-size="16" fill="#FFEDE9" opacity="0.92">薅券 · 盘券 · 算最优 · 盯活动 —— 让每一张券都花在刀刃上</text>
+
+    <g transform="translate(0,140)">
+      <rect x="0" y="0" width="196" height="30" rx="15" fill="#ffffff" opacity="0.14"/>
+      <text x="98" y="20" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13"
+            fill="#ffffff" text-anchor="middle">基于麦当劳中国 MCP Server</text>
+    </g>
+  </g>
+</svg>

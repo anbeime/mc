@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcd-savings-radar"
+version = "1.0.0"
+description = "麦麦省钱雷达 —— 基于麦当劳 MCP 的一站式薅券 / 算价 / 盯活动助手"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "anbeime" }]
+keywords = ["mcp", "mcdonalds", "coupon", "savings", "skill", "agent"]
+dependencies = []          # 零第三方依赖，只用标准库
+
+[project.scripts]
+mcd-radar = "mcd_radar.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
